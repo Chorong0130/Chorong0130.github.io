@@ -4,6 +4,8 @@
         <meta charset="UTF-8">
         <title>Su_ing</title>
         <link rel="stylesheet" href="/css/index.css">
+        <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
     </head>
     <body>
 
@@ -11,8 +13,13 @@
             <img src="./img/YSI.jpg">
             <h3>수인(chorong)</h3>
         </div>
-        
-
+<!---->
+        <h1>실시간 데이터 테스트</h1>
+        <input type="text" id="messageInput" placeholder="메시지를 입력하세요">
+        <button onclick="sendMessage()">보내기</button>
+        <ul id="messagesList"></ul>
+        <script src="./js/script.js"></script>
+<!---->
         <div class="SocialBtn">
             <button type="button" class="instagram" onclick="location.href='https://instagram.com/chorong._.0130'">Instagram으로 이동</button>
             <button type="button" class="github" onclick="location.href='https://github.com/Chorong0130'">Github로 이동</button>
