@@ -1,6 +1,6 @@
-// Firebase SDK 모듈 불러오기
+// Firebase SDK 가져오기
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
-import { getFirestore, collection, addDoc, serverTimestamp, query, orderBy, onSnapshot } 
+import { getFirestore, collection, addDoc, serverTimestamp }
     from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
 
 // Firebase 설정 정보
@@ -16,7 +16,7 @@ const firebaseConfig = {
 
 // Firebase 초기화
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+const db = getFirestore(app);  // Firestore 가져오기
 
 // 메시지 전송 함수
 window.sendMessage = async function () {
@@ -29,23 +29,10 @@ window.sendMessage = async function () {
                 text: message,
                 timestamp: serverTimestamp()
             });
+            console.log("메시지 전송 성공!");
             messageInput.value = ""; // 입력창 비우기
         } catch (error) {
             console.error("메시지 전송 오류:", error);
         }
     }
 };
-
-// 실시간 데이터 업데이트
-const messagesList = document.getElementById("messagesList");
-const q = query(collection(db, "messages"), orderBy("timestamp"));
-
-onSnapshot(q, (snapshot) => {
-    messagesList.innerHTML = ""; // 기존 리스트 초기화
-
-    snapshot.forEach((doc) => {
-        const li = document.createElement("li");
-        li.textContent = doc.data().text;
-        messagesList.appendChild(li);
-    });
-});
